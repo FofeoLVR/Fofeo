@@ -53,7 +53,7 @@ body {
 .Container {
     background-color: rgba(255, 253, 253, 0.1);
     width: 40%;
-    max-height: 370px;
+    max-height: 380px;
     max-width: 450px;
     min-width: 300px;
     border-radius: 12px;
@@ -69,7 +69,7 @@ body {
     color: white;
     gap: 20px;
     padding: 10px;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 
@@ -101,7 +101,7 @@ body {
 }
 
 .TitleDIv {
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: rgba(185, 173, 173, 0.089);
     border-radius: 8px;
     padding: 8px 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -157,15 +157,18 @@ body {
 }
 
 .MediaIcon{
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
 }
 
 .MediaButton{
-    width: 20px;
-    height: 20px;
+    width: 60px;
+    height: 60px;
     background: transparent;
     border: none;
-    padding: 0;
-    cursor: pointer;
+    cursor: hand;
+    margin-bottom: 5px;
+}
+
+.SocialMedia{
 }
