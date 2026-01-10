@@ -175,3 +175,19 @@ body {
     padding: 0;
     cursor: pointer;
 }
+
+.InformationContainer{
+    background-color: rgba(185, 173, 173, 0.089);
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 80%; 
+    text-align: center;
+}
+
+.InformationContainer:hover {
+    transform: translateY(-5px), scale(1.2); 
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4); 
+    background-color: rgba(0, 0, 0, 0.35);
+}
