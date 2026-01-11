@@ -1,28 +1,36 @@
-
+/* =========================
+   RESET
+========================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* =========================
+   BODY
+========================= */
 body {
     background-color: rgb(31, 30, 30);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
     overflow: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+/* =========================
+   VIDEO BACKGROUND
+========================= */
 .video-background {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
     z-index: -2;
+    overflow: hidden;
     filter: brightness(0.7);
 }
 
@@ -30,115 +38,259 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.7);
 }
 
 .video-background::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     backdrop-filter: blur(10px);
-    -webkit-mask-image: radial-gradient(ellipse 28vw 40vh at center, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 80%);
-    mask-image: radial-gradient(ellipse 28vw 40vh at center, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 80%);
+    -webkit-mask-image: radial-gradient(
+        ellipse 28vw 40vh at center,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,1) 80%
+    );
+    mask-image: radial-gradient(
+        ellipse 28vw 40vh at center,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,1) 80%
+    );
     pointer-events: none;
-    z-index: 1;
 }
 
 .video-overlay {
     position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
     background-color: rgba(0, 0, 0, 0.438);
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
 }
 
-.video-background iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: 100vh;
-    min-width: 177.77vh;
-    min-height: 56.25vw;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    filter: brightness(-10);
-}
-
-
+/* =========================
+   CONTAINER (MASTER)
+========================= */
 .Container {
+    width: min(90vw, 460px);
+    max-height: 85vh;
+
     background: transparent;
-    /* responsive width with sensible min/max in viewport units (narrower) */
-    /* tuned for 27" 2560x1440: target around 420-500px at large viewports */
-    width: clamp(320px, 18vw, 520px);
-    min-width: 15vw;
-    max-width: 40vw;
-    /* let height grow with content, but cap to viewport */
-    height: auto;
-    min-height: 15vh;
-    max-height: 80vh;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-    transition: transform 0.22s cubic-bezier(.2,.9,.2,1), box-shadow 0.2s ease-out;
-    transform-origin: center center;
-    will-change: transform;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 10px 30px rgba(0, 150, 255, 0.3);
-    perspective: 1000px;
     color: white;
-    gap: clamp(10px, 1.2vw, 22px);
-    padding-top: 20px;
-    overflow: auto; /* allow scrolling if too much content */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2em;
+
+    padding: 1.4em;
+    border-radius: 12px;
+
+    font-size: clamp(14px, 1.1vw, 16px);
+
+    box-shadow:
+        0 0 20px rgba(255, 255, 255, 0.5),
+        0 10px 30px rgba(0, 150, 255, 0.3);
+
+    transition: transform 0.22s cubic-bezier(.2,.9,.2,1),
+                box-shadow 0.2s ease-out;
+
+    overflow-y: auto;
 }
+
 
 .Container:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 0 24px rgba(255, 255, 255, 0.65), 0 12px 30px rgba(0, 150, 255, 0.45);
+    box-shadow:
+        0 0 24px rgba(255, 255, 255, 0.65),
+        0 12px 30px rgba(0, 150, 255, 0.45);
 }
 
-
-/* Ensure good behavior on small screens */
-@media (max-width: 700px) {
-    .Container {
-        width: 76%;
-        min-width: auto;
-        max-width: 92%;
-        padding: 16px;
-        gap: 12px;
-    }
-    .ContainerTitle { font-size: 1.4rem; }
-    .ProfileImage { width: 96px; height: 96px; }
-}
-
-
+/* =========================
+   HEADER
+========================= */
 .Header {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 1.2em;
     width: 100%;
 }
 
 .HeaderText {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 0.8em;
 }
 
-/* Bio plus lisible */
+/* =========================
+   TITLE
+========================= */
+.TitleDIv {
+    background-color: rgba(185, 173, 173, 0.089);
+    border-radius: 8px;
+    padding: 0.6em 1em;
+    width: fit-content;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.TitleDIv:hover {
+    transform: translateY(-5px);
+    background-color: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
+}
+
+.ContainerTitle {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    user-select: none;
+    text-shadow: 0 0 5px rgba(0, 150, 255, 0.7);
+}
+
+/* =========================
+   PROFILE IMAGE
+========================= */
+.ProfileImage {
+    width: 28%;
+    max-width: 140px;
+    min-width: 88px;
+    aspect-ratio: 1 / 1;
+
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.35);
+
+    filter: brightness(75%);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.ProfileImage:hover {
+    transform: translateY(-5px);
+    filter: brightness(100%);
+    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
+}
+
+/* =========================
+   PROFILE BLOCK
+========================= */
+.ProfileContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+
+    background-color: rgba(185, 173, 173, 0.089);
+    padding: 0.8em 1em;
+    border-radius: 20px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ProfileContainer:hover {
+    transform: translateY(-5px);
+    background-color: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
+}
+
+.ImageDeProfile {
+    width: 3em;
+    aspect-ratio: 1 / 1;
+}
+
+.IconContainer {
+    display: flex;
+    gap: 0.4em;
+}
+
+.icon {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.ProfileText {
+    font-size: 0.85em;
+    margin-left: 0.4em;
+}
+
+/* =========================
+   BIO
+========================= */
 .InformationContainer {
-    text-align: left;
+    width: 85%;
+    background-color: rgba(185, 173, 173, 0.089);
+    padding: 0.8em 1em;
+    border-radius: 8px;
+    text-align: center;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Responsive : on repasse vertical sur mobile */
+.InformationContainer:hover {
+    transform: translateY(-5px);
+    background-color: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
+}
+
+.InformationText {
+    font-size: 0.95em;
+}
+
+/* =========================
+   SOCIAL MEDIA
+========================= */
+.SocialMedia {
+    display: flex;
+    gap: 1em;
+
+    background-color: rgba(185, 173, 173, 0.089);
+    padding: 0.8em 1.2em;
+    border-radius: 20px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.SocialMedia:hover {
+    transform: translateY(-5px);
+    background-color: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
+}
+
+.MediaButton {
+    width: 3.5em;
+    height: 3.5em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: transparent;
+    border-radius: 25%;
+    cursor: pointer;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.MediaButton:hover {
+    transform: translateY(-5px);
+    background-color: rgba(97, 96, 96, 0.35);
+    box-shadow: 0 15px 25px rgba(236, 129, 129, 0.4);
+}
+
+.MediaIcon,
+.TiktokMediaIcon,
+.YoutubeMediaIcon {
+    width: 70%;
+    height: auto;
+}
+
+/* =========================
+   MOBILE = SCALE DOWN
+========================= */
 @media (max-width: 700px) {
+    .Container {
+        transform: scale(0.95);
+    }
+
     .Header {
         flex-direction: column;
         text-align: center;
@@ -147,178 +299,4 @@ body {
     .HeaderText {
         align-items: center;
     }
-
-    .InformationContainer {
-        text-align: center;
-    }
-}
-
-
-
-.ContainerTitle {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: rgba(255, 255, 255, 0.9);
-    user-select: none;
-        /* target ~28-32px on 2560px width */
-        font-size: clamp(18px, 1.4vw, 32px);
-    font-weight: 700;
-    margin: 0;
-    text-shadow: 0 0 5px rgba(0, 150, 255, 0.7);
-}
-.ProfileImage {
-    border-radius: 30px;
-    user-select: none;
-    /* Aim for ~110-140px on 2560px, scale proportionally */
-    width: clamp(88px, 4.5vw, 140px);
-    aspect-ratio: 1/1;
-    background-color: rgba(0, 0, 0, 0.35);
-    margin-top: 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    filter: brightness(75%);
-}
-
-.ProfileImage:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
-    background-color: rgba(0, 0, 0, 0.35);
-    filter: brightness(100%);
-}
-
-.TitleDIv {
-    background-color: rgba(185, 173, 173, 0.089);
-    border-radius: 8px;
-    padding: clamp(6px, 0.8vw, 10px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: clamp(28%, 6vw, 40%);
-    text-align: center;
-}
-
-.TitleDIv:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
-    background-color: rgba(0, 0, 0, 0.35);
-}
-
-
-
-.ProfileContainer{
-    display: flex;
-    user-select: none;
-    justify-content: center;
-    align-content: center;
-    flex-direction: row;
-    background-color: rgba(185, 173, 173, 0.089);
-    padding: clamp(8px, 0.6vw, 14px);
-    border-radius: 20px ;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.ProfileContainer:hover{
-    transform: translateY(-5px);
-    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
-    background-color: rgba(0, 0, 0, 0.35);
-}
-
-.ImageDeProfile{
-    width: clamp(40px, 2.2vw, 72px);
-    user-select: none;
-    aspect-ratio: 1/1;
-}
-
-.InformationText{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    user-select: none;
-}
-.icon{
-    width: 20px;
-    height: 20px;
-    user-select: none;
-}
-
-.ProfileText{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-left: 5px;
-    font-size: small;
-    user-select: none;
-}
-
-.MediaIcon{
-    width: clamp(36px, 2.3vw, 64px);
-    height: auto;
-    user-select: none;
-}
-
-.TiktokMediaIcon{
-    width: clamp(32px, 2.0vw, 56px);
-    height: auto;
-    user-select: none;
-
-}
-.YoutubeMediaIcon{
-    width: clamp(28px, 1.6vw, 48px);
-    height: auto;
-}
-
-
-.SocialMedia{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 10px;
-    flex-direction: row;
-    background-color: rgba(185, 173, 173, 0.089);
-    padding: 10px;
-    border-radius: 20px ;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.SocialMedia:hover{
-    transform: translateY(-5px);
-    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
-    background-color: rgba(0, 0, 0, 0.35);
-
-}
-
-.MediaButton{
-    width: 60px;
-    height: 60px;
-    background: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.MediaButton:hover {
-    transform: translate(0, -5px);
-    box-shadow: 0 15px 25px rgba(236, 129, 129, 0.4);
-    background-color: rgba(97, 96, 96, 0.35);
-}
-
-
-.InformationContainer{
-    background-color: rgba(185, 173, 173, 0.089);
-    border-radius: 8px;
-    padding: 10px 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 80%; 
-    text-align: center;
-}
-
-.InformationContainer:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
-    background-color: rgba(0, 0, 0, 0.35);
 }
