@@ -192,11 +192,15 @@ body {
 
 .ImageDeProfile {
     width: 3em;
+<<<<<<< HEAD
     
     aspect-ratio: 1 / 1;
 
     border-radius: 30%;
     background-color: rgba(0, 0, 0, 0.35);
+=======
+    aspect-ratio: 1 / 1;
+>>>>>>> 598ddc68ce4a46ad7fe16ce4dceb52a6cbcf4562
 }
 
 .IconContainer {
