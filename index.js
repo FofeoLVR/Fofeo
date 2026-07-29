@@ -32,6 +32,8 @@ container.addEventListener('mouseleave', () => {
 const video = document.getElementById("backgroundVideo");
 const soundButton = document.getElementById("soundButton");
 
+soundButton.textContent = "🔇";
+
 soundButton.addEventListener("click", async () => {
     if (video.muted) {
         video.muted = false;
