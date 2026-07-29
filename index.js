@@ -1,4 +1,3 @@
-
 const container = document.getElementById('Container');
 
 container.addEventListener('mousemove', (e) => {
@@ -25,3 +24,39 @@ container.addEventListener('mouseleave', () => {
     container.style.transform = 'rotateX(0deg) rotateY(0deg)';
 });
 
+
+// =========================
+// BOUTON SON
+// =========================
+
+const video = document.getElementById("backgroundVideo");
+const soundButton = document.getElementById("soundButton");
+
+soundButton.addEventListener("click", async () => {
+    if (video.muted) {
+        video.muted = false;
+
+        try {
+            await video.play();
+        } catch (err) {
+            console.error(err);
+        }
+
+        soundButton.textContent = "🔊";
+    } else {
+        video.muted = true;
+        soundButton.textContent = "🔇";
+    }
+});
+
+document.addEventListener("click", async () => {
+    video.muted = false;
+
+    try {
+        await video.play();
+    } catch (err) {
+        console.error(err);
+    }
+
+    soundButton.textContent = "🔊";
+}, { once: true });
