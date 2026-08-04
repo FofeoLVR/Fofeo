@@ -21,6 +21,33 @@ body {
         Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+.BackIcon {
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 50%;
+}
+
+.BackButon{
+    width: 3.5em;
+    height: 3.5em;
+    background: transparent;
+    border: none;
+    color: white;
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    border-radius: 25%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.BackButon:hover {
+    transform: translateY(-5px);
+    background-color: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
+}
+
 /* =========================
    VIDEO BACKGROUND
 ========================= */
@@ -130,27 +157,6 @@ body {
     width: fit-content;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.BackButon{
-    width: 2.5em;
-    height: 2.5em;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: transparent;
-    border-radius: 25%;
-    cursor: pointer;
-
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.BackButon:hover {
-    transform: translateY(-5px);
-    background-color: rgba(97, 96, 96, 0.35);
-    box-shadow: 0 15px 25px rgba(236, 129, 129, 0.4);
 }
 
 .TitleDIv:hover {
@@ -330,13 +336,6 @@ body {
 .YoutubeMediaIcon {
     width: 70%;
     height: auto;
-    border-radius: 25%;
-}
-
-.VectorMediaIcon {
-    width: 70%;
-    height: auto;
-    border-radius: 25%;
 }
 
 /* =========================
